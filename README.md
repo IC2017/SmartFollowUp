@@ -127,7 +127,7 @@ The `BlueShoping.swift` file need the following parameters to complete the actio
   let appIdTenantId = "your APPID tenant Id"
   ```
 
-6. Do `pod install` in the application. And open `SmartFollowup.xcworkspace`
+6. Do `pod install` in the application. And open `BlueShopping.xcworkspace`
 
 7. Run the application and Login using AppID.
 
