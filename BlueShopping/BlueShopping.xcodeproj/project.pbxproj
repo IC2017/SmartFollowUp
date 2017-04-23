@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1475D37C1E729D03002ED34A /* MyChallengeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1475D37B1E729D03002ED34A /* MyChallengeHandler.swift */; };
+		1475D37E1E72A36E002ED34A /* MFP.png in Resources */ = {isa = PBXBuildFile; fileRef = 1475D37D1E72A36E002ED34A /* MFP.png */; };
+		1475D3801E72AAA8002ED34A /* mfpclient.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1475D37F1E72AAA8002ED34A /* mfpclient.plist */; };
 		149F82AA1E6CA36900F9285E /* NYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 149F82A71E6CA36900F9285E /* NYAlertView.m */; };
 		149F82AB1E6CA36900F9285E /* NYAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 149F82A91E6CA36900F9285E /* NYAlertViewController.m */; };
 		14DE89121E6CAC3A003F0D99 /* fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 14DE89111E6CAC3A003F0D99 /* fb.png */; };
@@ -26,6 +29,7 @@
 		14E664981E6C25F80061E146 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E664971E6C25F80061E146 /* FeedbackViewController.swift */; };
 		14E6649B1E6C82790061E146 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6649A1E6C82790061E146 /* FloatRatingView.swift */; };
 		14E6649E1E6C8F3E0061E146 /* RippleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6649D1E6C8F3E0061E146 /* RippleAction.swift */; };
+		185C93E81EACE20A0077462E /* bluemixCredentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 185C93E71EACE20A0077462E /* bluemixCredentials.plist */; };
 		507174B1F848B2FF78D58FA9 /* Pods_BlueShopping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 832F9A33722DC70FAB2B165B /* Pods_BlueShopping.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1475D37B1E729D03002ED34A /* MyChallengeHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyChallengeHandler.swift; sourceTree = "<group>"; };
+		1475D37D1E72A36E002ED34A /* MFP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MFP.png; sourceTree = "<group>"; };
+		1475D37F1E72AAA8002ED34A /* mfpclient.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mfpclient.plist; sourceTree = "<group>"; };
 		149F82A51E6CA36800F9285E /* BlueShopping-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlueShopping-Bridging-Header.h"; sourceTree = "<group>"; };
 		149F82A61E6CA36900F9285E /* NYAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYAlertView.h; sourceTree = "<group>"; };
 		149F82A71E6CA36900F9285E /* NYAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYAlertView.m; sourceTree = "<group>"; };
@@ -67,6 +74,7 @@
 		14E664971E6C25F80061E146 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		14E6649A1E6C82790061E146 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
 		14E6649D1E6C8F3E0061E146 /* RippleAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RippleAction.swift; sourceTree = "<group>"; };
+		185C93E71EACE20A0077462E /* bluemixCredentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bluemixCredentials.plist; sourceTree = "<group>"; };
 		6F91666A8915DFC90DEAEF41 /* Pods-BlueShopping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueShopping.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueShopping/Pods-BlueShopping.release.xcconfig"; sourceTree = "<group>"; };
 		832F9A33722DC70FAB2B165B /* Pods_BlueShopping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlueShopping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C60ACE4AA8ABBBCB8E748E0C /* Pods-BlueShopping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueShopping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueShopping/Pods-BlueShopping.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1475D37A1E729CF0002ED34A /* LoginChallenge */ = {
+			isa = PBXGroup;
+			children = (
+				1475D37B1E729D03002ED34A /* MyChallengeHandler.swift */,
+			);
+			name = LoginChallenge;
+			sourceTree = "<group>";
+		};
 		149F82A41E6CA35600F9285E /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				14DE89261E6DC4B8003F0D99 /* facebook.png */,
+				1475D37D1E72A36E002ED34A /* MFP.png */,
 				14DE89271E6DC4B8003F0D99 /* google-plus-xxl.png */,
 				14E664911E6BECF50061E146 /* scrren.png */,
 				14E664931E6BEDA90061E146 /* tabscreen.png */,
@@ -141,6 +158,8 @@
 		14E664651E6BEB590061E146 = {
 			isa = PBXGroup;
 			children = (
+				185C93E71EACE20A0077462E /* bluemixCredentials.plist */,
+				1475D37F1E72AAA8002ED34A /* mfpclient.plist */,
 				14DE89201E6CBA8E003F0D99 /* images */,
 				14E664701E6BEB590061E146 /* BlueShopping */,
 				14E664851E6BEB590061E146 /* BlueShoppingTests */,
@@ -162,6 +181,7 @@
 		14E664701E6BEB590061E146 /* BlueShopping */ = {
 			isa = PBXGroup;
 			children = (
+				1475D37A1E729CF0002ED34A /* LoginChallenge */,
 				14DE892B1E6DC8A5003F0D99 /* Assests */,
 				14DE892A1E6DC894003F0D99 /* ViewControllers */,
 				14DE89211E6D817C003F0D99 /* BlueShopping.entitlements */,
@@ -275,6 +295,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -312,8 +335,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				14DE891A1E6CB5F5003F0D99 /* initial.png in Resources */,
+				185C93E81EACE20A0077462E /* bluemixCredentials.plist in Resources */,
 				14E6647C1E6BEB590061E146 /* LaunchScreen.storyboard in Resources */,
 				14E664791E6BEB590061E146 /* Assets.xcassets in Resources */,
+				1475D3801E72AAA8002ED34A /* mfpclient.plist in Resources */,
 				14DE89291E6DC4B8003F0D99 /* google-plus-xxl.png in Resources */,
 				14E664941E6BEDA90061E146 /* tabscreen.png in Resources */,
 				14DE89281E6DC4B8003F0D99 /* facebook.png in Resources */,
@@ -321,6 +346,7 @@
 				14E664771E6BEB590061E146 /* Main.storyboard in Resources */,
 				14DE89181E6CAEDF003F0D99 /* google.png in Resources */,
 				14DE89121E6CAC3A003F0D99 /* fb.png in Resources */,
+				1475D37E1E72A36E002ED34A /* MFP.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +415,7 @@
 				149F82AB1E6CA36900F9285E /* NYAlertViewController.m in Sources */,
 				14E664961E6C25DD0061E146 /* LoginViewController.swift in Sources */,
 				14E664741E6BEB590061E146 /* MainViewController.swift in Sources */,
+				1475D37C1E729D03002ED34A /* MyChallengeHandler.swift in Sources */,
 				14E664721E6BEB590061E146 /* AppDelegate.swift in Sources */,
 				14E6649E1E6C8F3E0061E146 /* RippleAction.swift in Sources */,
 				14E6649B1E6C82790061E146 /* FloatRatingView.swift in Sources */,
