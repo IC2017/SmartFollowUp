@@ -9,7 +9,6 @@
 import UIKit
 import BMSCore
 import BMSPush
-import BluemixAppID
 import NotificationCenter
 
 @UIApplicationMain
@@ -18,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     // Cloudant Credentials
-    var cloudantName:String = "complaints"
+    var cloudantName:String = ""
     var cloudantUserName:String = ""
     var cloudantPassword:String = ""
     var cloudantHostName:String = ""
@@ -32,32 +31,77 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var pushAppClientSecret:String = ""
     var pushAppRegion:String = ""
 
-    // APPID Credentials
-   let appIdTenantId = ""
+    // Ananlytics Credentials
+    var ananlyticsAppName = ""
+    var ananlyticsApiKey = ""
     
     let notificationName = Notification.Name("sendFeedBack")
     var userName:String = UserDefaults.standard.value(forKey: "userName") != nil ?  UserDefaults.standard.value(forKey: "userName") as! String : "User"
 
-    var appToken:AccessToken? = nil
-    var idToken:IdentityToken? = nil
+    var isEnabled:Bool = false    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        if let path = Bundle.main.path(forResource: "bluemixCredentials", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+            // use swift dictionary as normal
+            
+            cloudantName = dict["cloudantName"] as! String;
+            cloudantUserName = dict["cloudantUserName"] as! String;
+            cloudantPassword = dict["cloudantPassword"] as! String;
+            cloudantHostName = dict["cloudantHostName"] as! String;
+            whiskKey = dict["openWhiskKey"] as! String;
+            whiskPass = dict["openWhiskPassword"] as! String;
+            pushAppGUID = dict["pushAppGUID"] as! String;
+            pushAppClientSecret = dict["pushAppClientSecret"] as! String;
+            pushAppRegion = dict["pushAppRegion"] as! String;
+            ananlyticsAppName = dict["ananlyticsAppName"] as! String;
+            ananlyticsApiKey = dict["ananlyticsApiKey"] as! String;
+        }
+        
         
         //Initialize core
         let bmsclient = BMSClient.sharedInstance
         bmsclient.initialize(bluemixRegion: pushAppRegion)
+  
+        isEnabled = false
+        _ = MyChallengeHandler();
         
-        //Initialize APPID
-        let appid = AppID.sharedInstance
-        appid.initialize(tenantId: appIdTenantId, bluemixRegion: ".stage1.ng.bluemix.net")
-        let appIdAuthorizationManager = AppIDAuthorizationManager(appid:appid)
-        bmsclient.authorizationManager = appIdAuthorizationManager
         
+        Analytics.initialize(appName: ananlyticsAppName, apiKey: ananlyticsApiKey, hasUserContext: true, collectLocation: true, deviceEvents: .lifecycle, .network)
+        
+        Analytics.isEnabled = true
+        Logger.isLogStorageEnabled = true
+        Logger.isInternalDebugLoggingEnabled = true
+        Logger.logLevelFilter = LogLevel.debug
+        
+        let logger = Logger.logger(name: "My Logger")
+        
+        logger.info(message: "App Opened")
+        
+        // The metadata can be any JSON object
+        Analytics.log(metadata: ["event": "App Opened"])
+        
+        Logger.send(completionHandler: { (response: Response?, error: Error?) in
+            if let response = response {
+                print("Status code: \(response.statusCode)")
+                print("Response: \(response.responseText)")
+            }
+            if let error = error {
+                logger.error(message: "Failed to send logs. Error: \(error)")
+            }
+        })
+        Analytics.send(completionHandler: { (response: Response?, error: Error?) in
+            if let response = response {
+                print("Status code: \(response.statusCode)")
+                print("Response: \(response.responseText)")
+            }
+            if let error = error {
+                logger.error(message: "Failed to send analytics. Error: \(error)")
+            }
+        })
         return true
-    }
-    
-    func application(_ application: UIApplication, open url: URL, options :[UIApplicationOpenURLOptionsKey : Any]) -> Bool {
-        return AppID.sharedInstance.application(application, open: url, options: options)
     }
     
     

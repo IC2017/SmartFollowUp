@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import BluemixAppID
 import NotificationCenter
 
 class MainViewController: UIViewController {
@@ -26,12 +25,12 @@ class MainViewController: UIViewController {
         
      
         
-        if (appDelegate.idToken == nil){
+        if (appDelegate.isEnabled == false){
             
             performSegue(withIdentifier: "loginVCSS", sender: self)
             
         }else{
-            
+            alertview()
             if UIApplication.shared.isRegisteredForRemoteNotifications == false {
                 
                 NotificationCenter.default.addObserver(self, selector: #selector(MainViewController.alertview), name: notificationName, object: nil)
@@ -61,7 +60,7 @@ class MainViewController: UIViewController {
 
         self.navigationItem.hidesBackButton = true
         
-        if (appDelegate.idToken != nil){
+        if (appDelegate.isEnabled == true){
             self.hiddenView.isHidden = true;
         }
     }
