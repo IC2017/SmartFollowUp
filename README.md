@@ -20,9 +20,9 @@ Complete the steps:
 
  Go to https://console.ng.bluemix.net and Log in. Click on [Catalog](https://console.ng.bluemix.net/catalog/) on the top bar.
 
-1. On the left pane click on `Boiler Plates` below Apps.  Create [MobileFirst service starter] app. This will have `Push notification service`.
+1. On the left pane click on `Mobile` below Apps.  Create a `Push notification service`.
 
-   <img src="Assets/boilerplate.png" width="300" height="120">
+   <img src="Assets/push.png" width="300" height="120">
 
 2. Create an `Mobile Foundation` service.
 
@@ -107,27 +107,10 @@ The `BlueShoping.swift` file need the following parameters to complete the actio
   wsk rule create myRule yourTriggerName yourActionName
   ```
 
-5. Open the SmartFollowup app in `XCode.app`. Go to the `AppDelegate.swift` file and add values for ,
+5. Open the SmartFollowup app in `XCode.app`. Go to the `bluemixCredentials.plist` file and add values for ,
 
-  ```
-  //cloudant
-  var cloudantName:String = "Cloudant DB name"
-  var cloudantUserName:String = "Cloudant Username"
-  var cloudantPassword:String = "Cloudant password"
-  var cloudantHostName:String = "Your cloudant host name"
+  <img src="Assets/plist.png" width="700" height="300">
 
-  //Whisk
-  var whiskKey:String = "OpenWhisk Key"
-  var whiskPass:String = "OpenWhisk password"
-
-  //Push Service
-  var pushAppGUID:String = "push Service app GUID"
-  var pushAppClientSecret:String = "push Service client secret"
-  var pushAppRegion:String = "Push/AppID service region"
-
-  //APPID
-  let appIdTenantId = "your APPID tenant Id"
-  ```
 
 6. Do `pod install` in the application. And open `BlueShopping.xcworkspace`
 
