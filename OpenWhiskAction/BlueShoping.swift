@@ -39,15 +39,15 @@ import SwiftyJSON
 func main(args: [String:Any]) -> [String:Any] {
     
     // Cloudant Credentials
-    let cloudantUserName = "agirijak";
-    let cloudantPassword = "ananthan@706";
-    let cloudantPermissionKey = "eryndinksmingstendingeto";
-    let cloudantPermissionPassword = "ad4ba743936b01a666d2ae913b884b884c4d48ae"
+    let cloudantUserName = "";
+    let cloudantPassword = "";
+    let cloudantPermissionKey = "";
+    let cloudantPermissionPassword = ""
     let cloudantDbname = "mood"
     
     //Push Credentials
-    var appSecret = "f0677a6e-97fc-45b1-a0f4-6a6c1835e087";
-    var appId = "9b303c8c-acdd-40bb-a236-559cb8dc25e9";
+    var appSecret = "f0677a6e-97fc-45b1-33a0f4-6a6c1835e087";
+    var appId = "9b303c8c-acdd-40bb-a23633-559cb8dc25e9";
     
     //Watson Text to speach Version
     let version = "2016-05-19";
