@@ -6,7 +6,7 @@ The SmartFollowup app will register a feedback on the recently purchased items t
 
   <img src="Assets/arch.png" width="700" height="400">
 
-##Requirements
+## Requirements
 
 * iOS 10
 * Xcode 8.+

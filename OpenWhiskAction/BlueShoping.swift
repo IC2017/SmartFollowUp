@@ -28,7 +28,7 @@
  *  @param {string} deviceIds - The deviceId to which the message need to be send. This data will come from the `complaints` database.
  *  @param {string} name - Name of the customer. This data will come from the `complaints` database.
  *  @param {string} time - Time interval you need to add.
- 
+
  *  @return {object} whisk async.
  */
 import KituraNet
@@ -37,32 +37,34 @@ import SwiftyJSON
 
 
 func main(args: [String:Any]) -> [String:Any] {
-    
+
     // Cloudant Credentials
     let cloudantUserName = "";
     let cloudantPassword = "";
     let cloudantPermissionKey = "";
     let cloudantPermissionPassword = ""
     let cloudantDbname = "mood"
-    
+
     //Push Credentials
-    var appSecret = "f0677a6e-97fc-45b1-33a0f4-6a6c1835e087";
-    var appId = "9b303c8c-acdd-40bb-a23633-559cb8dc25e9";
-    
+    var appSecret = "";
+    var appId = "";
+
     //Watson Text to speach Version
     let version = "2016-05-19";
-    
-    
+    let toneAnalyzerUsername = "";
+    let toneAnalyzerPassword = "";
+
+
     var result = "nothing"
     var toneMessage =  "no message";
     var deviceAarray = "no device"
     var name = "User"
     let docID = args["id"] as? String
-    
+
     let invokeResult = Whisk.invoke(actionNamed: "/whisk.system/cloudant/read", withParameters: ["host":"\(cloudantUserName).cloudant.com","password":cloudantPassword,"username":cloudantUserName,"dbname":"complaints","id":docID!])
     let dateActivation = JSON(invokeResult)
     print("message : \(dateActivation)")
-    
+
     // the date we are looking for is the result inside the date activation
     if let dateString = dateActivation["response"]["result"]["message"].string,let dateString1 = dateActivation["response"]["result"]["deviceIds"].string,let dateString2 = dateActivation["response"]["result"]["name"].string  {
         print("It is now \(dateString)")
@@ -73,36 +75,35 @@ func main(args: [String:Any]) -> [String:Any] {
         print("Could not parse date of of the response.")
         //return ["error":"db read"]
     }
-    
-    
+
+
     //let userInput = args["message"] as? String;
     print("message : \(toneMessage)")
     let data = "{\"text\": \"\(toneMessage)\"}".data(using: .utf8)
-    
-    
-    
-    
+
     var requestOptions: [ClientRequest.Options] = []
     requestOptions.append(.method("POST"))
     requestOptions.append(.schema("https://"))
-    requestOptions.append(.hostname("watson-api-explorer.mybluemix.net"))
+    requestOptions.append(.hostname("gateway.watsonplatform.net"))
     requestOptions.append(.path("/tone-analyzer/api/v3/tone?version=\(version)"))
     requestOptions.append(.headers(["Accept":"application/json","Content-Type":"application/json"]))
-    
+    requestOptions.append(.username(toneAnalyzerUsername))
+    requestOptions.append(.password(toneAnalyzerPassword))
+
     let req = HTTP.request(requestOptions) { resp in
         if let resp = resp, resp.statusCode == HTTPStatusCode.OK {
             do {
                 var body = Data()
                 try resp.readAllData(into: &body)
                 let response = JSON(data: body)
-                
-                
-                
+
+
+
                 var dic = response["document_tone"]["tone_categories"][0];
                 var array = dic["tones"];
                 var indexVale = "message"
                 var value = 0;
-                
+
                 for (index, object) in array {
                     let name = Int((object["score"].floatValue)*100.0)
                     if(value <= name ) {
@@ -112,29 +113,29 @@ func main(args: [String:Any]) -> [String:Any] {
                     }
                 }
                 print("High value is : \(indexVale)")
-                
+
                 let url = "\(cloudantUserName).cloudant.com"
                 let path = "/\(cloudantDbname)/_design/moodPick/_view/new_view?keys=[\"\(indexVale)\"]";
-                
+
                 print(url)
                 print(path)
-                
+
                 var requestOptions1: [ClientRequest.Options] = []
                 requestOptions1.append(.method("GET"))
                 requestOptions1.append(.schema("http://"))
                 requestOptions1.append(.hostname(url))
                 requestOptions1.append(.path(path))
-                
+
                 let authData = "\(cloudantPermissionKey):\(cloudantPermissionPassword)"
-                
+
                 let dataer = authData.data(using: .utf8)
                 let base64 = dataer!.base64EncodedString()
                 print(base64)
                 requestOptions1.append(.headers(["Authorization":"Basic \(base64)"]))
-                
+
                 let req1 = HTTP.request(requestOptions1) { resp in
                     if let resp = resp, resp.statusCode == HTTPStatusCode.OK {
-                        
+
                         do {
                             var body = Data()
                             try resp.readAllData(into: &body)
@@ -146,22 +147,22 @@ func main(args: [String:Any]) -> [String:Any] {
                                     if let jsonObject: Any = json.object{
                                         print(jsonObject)
                                         if let jj = jsonObject as? [[String:String]] {
-                                            
+
                                             let g = jj[0]["value"] ;
                                             print("ooo yeah \(g!)")
-                                            
+
                                             var intro = "Hi \(name) , \(g!)";
                                             let devArray = [deviceAarray]
-                                            
+
                                             Whisk.invoke(actionNamed:"/whisk.system/pushnotifications/sendMessage",withParameters:["appSecret":appSecret,"appId":appId,"deviceIds":devArray,"text":intro])
-                                            
+
                                         }}
                                 }
                             }
                         }catch {
                             print("Error parsing JSON ")
                         }
-                        
+
                     }else {
                         if let resp = resp {
                             //request failed
